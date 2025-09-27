@@ -1,13 +1,16 @@
 import { NestFactory } from '@nestjs/core';
 import { DocumentBuilder, SwaggerModule } from '@nestjs/swagger';
 import { AppModule } from './app.module';
+import { Logger } from '@nestjs/common';
+
+const logger = new Logger('Main');
 
 process.on('unhandledRejection', (reason, promise) => {
-  console.info('Unhandled Rejection at:', promise, 'reason:', reason);
+  logger.error('Unhandled Rejection at:', promise, 'reason:', reason);
 });
 
 process.on('uncaughtException', (error) => {
-  console.info('Uncaught Exception thrown:', error);
+  logger.error('Uncaught Exception thrown:', error);
 });
 
 async function bootstrap() {
@@ -33,11 +36,11 @@ async function bootstrap() {
 
   const port = process.env.BLOCKCHAIN_PORT ?? 3000;
   await app.listen(port);
-  console.info(`Blockchain service is running at http://localhost:${port}`);
-  console.info(`Swagger docs → http://localhost:${port}/api-docs`);
+  logger.log(`Blockchain service is running at: http://localhost:${port}`);
+  logger.log(`Swagger docs available at: http://localhost:${port}/api-docs`);
 }
 
-bootstrap().catch((error) => {
-  console.info('App failed to start:', error);
+bootstrap().catch((error: Error) => {
+  logger.error('App failed to start:', error);
   process.exit(1);
 });

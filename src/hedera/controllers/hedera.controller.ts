@@ -100,9 +100,9 @@ import {
       description: 'Transfers HBAR tokens from one Hedera account to another.',
     })
     @ApiResponse({
-      status: 200,
+      status: 201,
       description: 'Successfully transferred HBAR.',
-      schema: { example: { status: 'SUCCESS' } },
+      schema: { example: { status: '0.0.6907235@1758869938.943840849' } },
     })
     @ApiResponse({
       status: 400,
