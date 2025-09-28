@@ -191,14 +191,14 @@ export class HederaService {
   }
 
   async listAllTransactions(accountId: string, limit: number = 10): Promise<any[]> {
-    const pageSize = Math.min(limit, 100); // <-- ADD
+    const pageSize = Math.min(limit, 100); 
     let url: string | null =
-      `${this.mirrorNodeUrl}/api/v1/transactions?account.id=${accountId}&limit=${pageSize}&order=desc`; // <-- CHANGE
+      `${this.mirrorNodeUrl}/api/v1/transactions?account.id=${accountId}&limit=${pageSize}&order=desc`; 
     const allTransactions: any[] = [];
     try {
       this.logger.log(`Fetching all transactions for account ${accountId}...`);
   
-      while (url && allTransactions.length < limit) { // <-- CHANGE
+      while (url && allTransactions.length < limit) { 
         this.logger.debug(`Fetching transactions from URL: ${url}`);
   
         const response: any = await axios.get(url);

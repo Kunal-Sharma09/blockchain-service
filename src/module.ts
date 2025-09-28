@@ -14,7 +14,7 @@ function resolveConfigFromEnv(configService: ConfigService): BlockchainOptionsTy
     account_id: configService.get<string>('BLOCKCHAIN_ACCOUNT_ID'),
     private_key: configService.get<string>('BLOCKCHAIN_PRIVATE_KEY'),
     initial_balance: Number(configService.get<number>('BLOCKCHAIN_INITIAL_BALANCE', 10_000_000)),
-    dto: DefaultDTO, // default DTO providers (you can override from AppModule if needed)
+    dto: DefaultDTO,
   };
 
   if (!options.account_id || !options.private_key) {
